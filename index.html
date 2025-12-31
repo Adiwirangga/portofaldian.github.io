@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Faldian</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <nav class="top-nav">PORTOFOLIO</nav>
+
+        <header>
+            <h1>
+                <span>Faldian</span> 
+                <span class="text-dim">Adiwirangga</span> 
+                <span>Yudhistyra</span>
+            </h1>
+            <p class="subtitle">Mahasiswa Teknik Informatika</p>
+        </header>
+
+        <div class="grid-wrapper">
+    
+    <div class="card" onclick="toggleCard(this)">
+        <h3>Tentang Saya</h3>
+        
+        <div class="card-content short-text">
+            <p>Saya adalah mahasiswa IT yang suka dengan dunia desain.</p>
+        </div>
+
+        <div class="card-details">
+            <p>Sebagai mahasiswa D4 Teknik Informatika di Universitas Airlangga, saya memiliki ketertarikan mendalam pada UI/UX Design dan Front-End Development.</p>
+            <br>
+            <p>Saya bercita-cita membangun agensi digital sendiri di masa depan.</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="toggleCard(this)">
+        <h3>Proyek</h3>
+        
+        <div class="card-content short-text">
+            <p>Beberapa proyek yang telah aku kerjakan. Ayo cek!</p>
+        </div>
+
+        <div class="card-details">
+            <p>Sayangnya sampai sekarang belum ada proyek yang telah aku selesaikan selain portofolio ini.</p>
+        </div>
+    </div>
+
+    <div class="card full-width">
+        <h3>Hubungi Saya</h3>
+        
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/faldianyudhistyra" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://instagram.com/fldnrangga" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            
+            <a href="https://threads.net/@fldnrangga" target="_blank">
+                <i class="fab fa-threads"></i>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+    <div class="overlay" id="overlay" onclick="closeAllCards()"></div>
+
+    <script>
+        function toggleCard(element) {
+            // Cek apakah kartu ini sedang expand?
+            const isExpanded = element.classList.contains('expanded');
+            
+            // Tutup semua kartu dulu biar gak tumpuk-tumpuk
+            closeAllCards();
+
+            // Jika tadi belum expand, maka sekarang Expand dia!
+            if (!isExpanded) {
+                element.classList.add('expanded');
+                document.getElementById('overlay').classList.add('active');
+            }
+        }
+
+        function closeAllCards() {
+            // Cari semua kartu yang punya kelas 'expanded'
+            const expandedCards = document.querySelectorAll('.card.expanded');
+            
+            // Hapus kelas 'expanded' dari mereka
+            expandedCards.forEach(card => {
+                card.classList.remove('expanded');
+            });
+
+            // Sembunyikan latar gelap
+            document.getElementById('overlay').classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>

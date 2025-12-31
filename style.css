@@ -1,0 +1,245 @@
+/* 1. Setting Dasar */
+body {
+    background-color: #050505;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+    background-image: url('bg.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-container {
+    width: 85%;
+    max-width: 900px;
+    position: relative;
+}
+
+/* 2. Navigasi */
+.top-nav {
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+/* 3. Header Nama */
+header {
+    margin-bottom: 50px;
+}
+
+header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+header h1 span:first-child { color: #fff; }
+.text-dim { color: #555; }
+header h1 span:last-child { color: #fff; }
+
+.subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #bbb;
+    margin-top: 0;
+    letter-spacing: 0.5px;
+}
+
+/* 4. Grid System */
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* 5. Desain Kartu (Normal) */
+.card {
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 25px;
+    height: 180px;
+    position: relative;
+    
+    background-color: #161616; /* Hitam transparan 50% */
+    backdrop-filter: blur(5px);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: #eee;
+    background-color: #161616;
+    cursor: pointer;
+}
+
+.card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    margin-top: 0;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.card-content {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    text-align: right;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+    max-width: 80%;
+}
+
+.full-width {
+    grid-column: span 2;
+    height: 120px;
+}
+
+/* 6. Ikon Sosmed */
+.social-icons {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    /* Kita hapus color & font-size di sini, pindahkan ke anak (a) */
+}
+
+/* Gaya Link Pembungkus Ikon */
+.social-icons a {
+    color: #555; /* Warna abu-abu gelap */
+    font-size: 20px;
+    margin-left: 20px; /* Jarak antar ikon */
+    text-decoration: none; /* Hilangkan garis bawah link */
+    transition: color 0.3s ease;
+}
+
+/* Efek saat disentuh mouse */
+.social-icons a:hover {
+    color: white; /* Berubah jadi putih menyala */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efek glowing dikit */
+}
+
+/* 7. Footer V1 */
+.version-tag {
+    position: fixed;
+    bottom: 30px;
+    right: 50px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+/* Responsif HP */
+@media (max-width: 768px) {
+    .grid-wrapper { grid-template-columns: 1fr; }
+    .full-width { grid-column: span 1; }
+    .top-nav { left: 20px; top: 20px; }
+    .version-tag { right: 20px; bottom: 20px; }
+    header h1 { font-size: 24px; }
+    .card h3 { font-size: 18px; }
+}
+
+/* ========================================= */
+/* BAGIAN PENTING: ANIMASI IOS         */
+/* ========================================= */
+
+/* 1. Sembunyikan detail saat normal */
+.card-details {
+    display: none;
+    opacity: 0;
+}
+
+/* 2. Sembunyikan teks pendek saat expand */
+.card.expanded .short-text {
+    display: none;
+}
+
+/* 3. Gaya Kartu saat EXPAND (Membesar) */
+.card.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* Posisi diam di tengah (transform diatur animasi) */
+    transform: translate(-50%, -50%); 
+    
+    width: 60%;
+    max-width: 600px;
+    height: auto;
+    min-height: 300px;
+    
+    background-color: #0a0a0a; /* Hitam pekat */
+    border: 1px solid #555;
+    z-index: 9999;
+    padding: 40px;
+    opacity: 0.5;
+    cursor: default;
+    
+    /* Panggil animasi 'iosPopOpen' */
+    animation: iosPopOpen 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* 4. Definisi Gerakan Animasi (Keyframes) */
+@keyframes iosPopOpen {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8); /* Mulai dari kecil */
+        opacity: 0;
+        border-radius: 40px; /* Sangat bulat */
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1); /* Ukuran normal */
+        opacity: 1;
+        border-radius: 12px; /* Sudut normal */
+    }
+}
+
+/* 5. Munculkan teks detail pelan-pelan */
+.card.expanded .card-details {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ccc;
+    text-align: left;
+    line-height: 1.8;
+    
+    animation: fadeText 0.4s ease 0.2s forwards;
+}
+
+@keyframes fadeText {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 6. Background Gelap (Overlay) */
+.overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(0px);
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+    backdrop-filter: blur(8px);
+}
