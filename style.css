@@ -243,3 +243,77 @@ header h1 span:last-child { color: #fff; }
     visibility: visible;
     backdrop-filter: blur(8px);
 }
+
+/* ========================================= */
+/* KHUSUS TAMPILAN HP (MOBILE)               */
+/* ========================================= */
+
+@media (max-width: 768px) {
+    
+    /* 1. Izinkan Scroll di HP */
+    body {
+        overflow-y: auto; /* Wajib bisa scroll */
+        height: auto;     /* Tinggi menyesuaikan konten */
+        display: block;   /* Matikan mode flex tengah */
+        padding: 30px 20px; /* Beri jarak pinggir */
+    }
+
+    .main-container {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    /* 2. Rapikan Navigasi */
+    .top-nav {
+        position: relative; /* Jangan melayang (fixed) */
+        top: auto; 
+        left: auto;
+        margin-bottom: 40px;
+        text-align: center; /* Tengah */
+        width: 100%;
+    }
+
+    /* 3. Header Nama */
+    header {
+        text-align: center; /* Nama rata tengah */
+        margin-bottom: 40px;
+    }
+    
+    header h1 { 
+        font-size: 28px; /* Ukuran nama disesuaikan */
+    }
+
+    /* 4. Grid Menjadi 1 Kolom */
+    .grid-wrapper { 
+        grid-template-columns: 1fr; /* Tumpuk ke bawah */
+        gap: 15px;
+    }
+    
+    .full-width { 
+        grid-column: span 1; 
+        height: 100px; /* Tinggi kartu sosmed */
+    }
+
+    /* 5. Perbaikan Kartu Expand di HP */
+    .card.expanded {
+        width: 85%; /* Lebar hampir penuh */
+        padding: 25px; /* Padding lebih kecil biar muat */
+        
+        /* Agar tidak kepotong atas-bawah */
+        top: 50%;
+        max-height: 80vh; /* Maksimal 80% tinggi layar */
+        overflow-y: auto; /* Scroll jika teks kepanjangan */
+        
+        /* Font di dalam expand */
+        font-size: 13px;
+    }
+    
+    /* Tombol Close/Backdrop lebih gelap */
+    .overlay.active {
+        backdrop-filter: blur(15px); /* Blur lebih kuat di HP */
+    }
+
+    /* Sembunyikan version tag di HP biar bersih */
+    .version-tag { display: none; }
+}
